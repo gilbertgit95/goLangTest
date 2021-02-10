@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	// fmt.Println("Hello mr. ??")
-	displayService.Variables()
-	displayService.Conditions()
+	// displayService.Variables()
+	// displayService.Conditions()
+	displayService.Loops()
 }

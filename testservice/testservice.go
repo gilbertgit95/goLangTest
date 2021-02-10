@@ -85,3 +85,36 @@ func Conditions() {
 	}
 
 }
+
+func Loops() {
+	// normal for loop
+	fmt.Println("Count from 0-10 using normal for loop")
+	for i := 0; i <= 10; i++ {
+		if i < 10 {
+			fmt.Print(i, ", ")
+		} else {
+			fmt.Println(i)
+		}
+	}
+
+	// while loop
+	fmt.Println("Count from 0-10 using while loop")
+	x := 0
+	for x <= 10 {
+		if x < 10 {
+			fmt.Print(x, ", ")
+		} else {
+			fmt.Println(x)
+		}
+		x++
+	}
+
+	// range loop or foreach
+	items := []string{"one", "two"}
+
+	for index, item := range items {
+		fmt.Println(index, " -> ", item)
+	}
+}
+
+// slice and dictionary
