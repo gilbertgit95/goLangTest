@@ -117,4 +117,18 @@ func Loops() {
 	}
 }
 
-// slice and dictionary
+// advance types
+func AdvanceTypes() {
+	names := []string{"gilbert test1", "gilbert test2"}
+	friends := []string{"jef", "Plong"}
+
+	result := append(names, "gilbert test3")
+	result2 := append(names, friends...)
+
+	fmt.Println(result, " -> ", len(result))
+	fmt.Println(result2, " -> ", len(result2))
+
+	for index, name := range result2 {
+		fmt.Println(index, " -> ", name)
+	}
+}

@@ -9,5 +9,6 @@ import (
 func main() {
 	// displayService.Variables()
 	// displayService.Conditions()
-	displayService.Loops()
+	// displayService.Loops()
+	displayService.AdvanceTypes()
 }
