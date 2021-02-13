@@ -1,6 +1,9 @@
 package testservice
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // variables and datatypes
 func Variables() {
@@ -173,4 +176,29 @@ func Structs() {
 		fmt.Println("player age: ", player.name)
 		fmt.Println("player score: ", player.name)
 	}
+}
+
+// dates methods
+func Dates() {
+	now := time.Now()
+
+	fmt.Println(now.String())
+	fmt.Println("Current Time in String: ", now.String())
+	fmt.Println("MM-DD-YYYY : ", now.Format("01-02-2006"))
+	fmt.Println("YYYY-MM-DD : ", now.Format("2006-01-02"))
+	fmt.Println("YYYY.MM.DD : ", now.Format("2006.01.02 15:04:05"))
+	fmt.Println("YYYY#MM#DD {Special Character} : ", now.Format("2006#01#02"))
+	fmt.Println("YYYY-MM-DD hh:mm:ss : ", now.Format("2006-01-02 15:04:05"))
+	fmt.Println("Time with MicroSeconds: ", now.Format("2006-01-02 15:04:05.000000"))
+	fmt.Println("Time with NanoSeconds: ", now.Format("2006-01-02 15:04:05.000000000"))
+	fmt.Println("ShortNum Month : ", now.Format("2006-1-02"))
+	fmt.Println("LongMonth : ", now.Format("2006-January-02"))
+	fmt.Println("ShortMonth : ", now.Format("2006-Jan-02"))
+	fmt.Println("ShortYear : ", now.Format("06-Jan-02"))
+	fmt.Println("LongWeekDay : ", now.Format("2006-01-02 15:04:05 Monday"))
+	fmt.Println("ShortWeek Day : ", now.Format("2006-01-02 Mon"))
+	fmt.Println("ShortDay : ", now.Format("Mon 2006-01-2"))
+	fmt.Println("Short Hour Minute Second: ", now.Format("2006-01-02 3:4:5"))
+	fmt.Println("Short Hour Minute Second: ", now.Format("2006-01-02 3:4:5 PM"))
+	fmt.Println("Short Hour Minute Second: ", now.Format("2006-01-02 3:4:5 pm"))
 }
