@@ -117,8 +117,8 @@ func Loops() {
 	}
 }
 
-// advance types
-func AdvanceTypes() {
+// slice
+func SliceTypes() {
 	names := []string{"gilbert test1", "gilbert test2"}
 	friends := []string{"jef", "Plong"}
 
@@ -130,5 +130,47 @@ func AdvanceTypes() {
 
 	for index, name := range result2 {
 		fmt.Println(index, " -> ", name)
+	}
+}
+
+// structs
+func Structs() {
+	type Player struct {
+		name  string
+		age   int
+		score int
+	}
+	type Team struct {
+		name        string
+		description string
+		players     []Player
+	}
+
+	var philTeam = Team{
+		name:        "Phil team org",
+		description: "all start players",
+		players: []Player{
+			{
+				name:  "gilbert",
+				age:   26,
+				score: 1,
+			},
+			{
+				name:  "gilbertwo",
+				age:   24,
+				score: 10,
+			},
+		},
+	}
+
+	fmt.Println("Team Name: ", philTeam.name)
+	fmt.Println("Team Description: ", philTeam.description)
+	fmt.Println("Players -> ")
+
+	for index, player := range philTeam.players {
+		fmt.Println("[", index+1, "]____________")
+		fmt.Println("player name: ", player.name)
+		fmt.Println("player age: ", player.name)
+		fmt.Println("player score: ", player.name)
 	}
 }

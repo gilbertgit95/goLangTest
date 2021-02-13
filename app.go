@@ -10,5 +10,6 @@ func main() {
 	// displayService.Variables()
 	// displayService.Conditions()
 	// displayService.Loops()
-	displayService.AdvanceTypes()
+	// displayService.SliceTypes()
+	displayService.Structs()
 }
