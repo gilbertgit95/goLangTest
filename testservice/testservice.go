@@ -2,6 +2,7 @@ package testservice
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -204,24 +205,62 @@ func Dates() {
 }
 
 // test interfaces
+type location struct {
+	x int
+	y int
+}
+
+type humanMethods interface {
+	Introduce() []string
+	SetLocation(e *int, l location) location
+	GetLocation() location
+}
+
+type humanProps struct {
+	name            string
+	birthday        string
+	homeTown        string
+	age             int
+	currentLocation location
+}
+
+func (h humanProps) Introduce() []string {
+	intro := []string{
+		"Hi, I am",
+		h.name,
+		", I live in ",
+		h.homeTown,
+		" I am now ",
+		strconv.Itoa(h.age),
+		"years old",
+	}
+
+	return intro
+}
+
+func (h humanProps) SetLocation(e *int, l location) location {
+	h.currentLocation = l
+	return h.currentLocation
+}
+
+func (h humanProps) GetLocation() location {
+	return h.currentLocation
+}
+
 func Interfaces() {
-	type location struct {
-		x int
-		y int
+	var gilbert humanMethods
+
+	gilbert = humanProps{
+		name:            "gilbert",
+		birthday:        "1995-04-27",
+		homeTown:        "cantilan s.d.s",
+		age:             25,
+		currentLocation: location{x: 12, y: 50},
 	}
 
-	type humanMthods interface {
-		introduce() string
-		setLocation(l location) location
-		getLocation() location
-	}
+	// gilbert.SetLocation(&gilbert, location{x: 30, y: 12})
 
-	type humanProps struct {
-		name            string
-		birthday        string
-		homeTown        string
-		age             int
-		currentLocation location
-	}
+	fmt.Println(gilbert.Introduce())
+	fmt.Println("location: ", gilbert.GetLocation())
 
 }
