@@ -202,3 +202,26 @@ func Dates() {
 	fmt.Println("Short Hour Minute Second: ", now.Format("2006-01-02 3:4:5 PM"))
 	fmt.Println("Short Hour Minute Second: ", now.Format("2006-01-02 3:4:5 pm"))
 }
+
+// test interfaces
+func Interfaces() {
+	type location struct {
+		x int
+		y int
+	}
+
+	type humanMthods interface {
+		introduce() string
+		setLocation(l location) location
+		getLocation() location
+	}
+
+	type humanProps struct {
+		name            string
+		birthday        string
+		homeTown        string
+		age             int
+		currentLocation location
+	}
+
+}
