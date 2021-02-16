@@ -14,5 +14,6 @@ func main() {
 	// displayService.Structs()
 	// displayService.Dates()
 	// displayService.Interfaces()
-	displayService.Dictionaries()
+	// displayService.Dictionaries()
+	displayService.JSONS()
 }

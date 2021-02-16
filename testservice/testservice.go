@@ -1,6 +1,7 @@
 package testservice
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 	"strings"
@@ -278,4 +279,32 @@ func Dictionaries() {
 	delete(dict, "_")
 
 	fmt.Println(dict)
+}
+
+func JSONS() {
+	// note! when using small case fields in struct, json parser doesnt work
+	type Dev struct {
+		Name     string
+		Age      int
+		Birthday string
+	}
+
+	// using struct field tags for complecated fields
+	type Dev2 struct {
+		Name     string `json:"first name"`
+		Age      int    `json:"age of yourself"`
+		Birthday string `json:"birth date"`
+		Status   string
+	}
+	var gilbert Dev
+	var gilbert2 Dev2
+
+	jsonStr := `{"name": "gilbert","age":25,"birthday":"1995-04-27"}`
+	jsonStr2 := `{"first name": "gilbert","age of yourself":25,"birth date":"1995-04-27", "status": "single"}`
+
+	json.Unmarshal([]byte(jsonStr), &gilbert)
+	json.Unmarshal([]byte(jsonStr2), &gilbert2)
+
+	fmt.Println(gilbert)
+	fmt.Println(gilbert2)
 }
