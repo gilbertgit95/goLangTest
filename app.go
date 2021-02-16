@@ -13,5 +13,6 @@ func main() {
 	// displayService.SliceTypes()
 	// displayService.Structs()
 	// displayService.Dates()
-	displayService.Interfaces()
+	// displayService.Interfaces()
+	displayService.Dictionaries()
 }

@@ -265,3 +265,17 @@ func Interfaces() {
 	fmt.Println("location: ", gilbert.GetLocation())
 
 }
+
+func Dictionaries() {
+	dict := map[string]string{
+		"gilbert": "cuerbo family",
+		"iramy":   "intano family",
+		"_":       "TEST",
+	}
+
+	dict["test"] = "test"
+
+	delete(dict, "_")
+
+	fmt.Println(dict)
+}
