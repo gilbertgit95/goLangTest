@@ -3,6 +3,7 @@ package testservice
 import (
 	"fmt"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -211,8 +212,8 @@ type location struct {
 }
 
 type humanMethods interface {
-	Introduce() []string
-	SetLocation(e *int, l location) location
+	Introduce() string
+	SetLocation(l location) location
 	GetLocation() location
 }
 
@@ -224,7 +225,7 @@ type humanProps struct {
 	currentLocation location
 }
 
-func (h humanProps) Introduce() []string {
+func (h humanProps) Introduce() string {
 	intro := []string{
 		"Hi, I am",
 		h.name,
@@ -235,10 +236,10 @@ func (h humanProps) Introduce() []string {
 		"years old",
 	}
 
-	return intro
+	return strings.Join(intro, "")
 }
 
-func (h humanProps) SetLocation(e *int, l location) location {
+func (h humanProps) SetLocation(l location) location {
 	h.currentLocation = l
 	return h.currentLocation
 }
