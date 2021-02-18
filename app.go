@@ -15,5 +15,6 @@ func main() {
 	// displayService.Dates()
 	// displayService.Interfaces()
 	// displayService.Dictionaries()
-	displayService.JSONS()
+	// displayService.JSONS()
+	displayService.ConcurChan()
 }
