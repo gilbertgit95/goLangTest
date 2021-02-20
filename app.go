@@ -3,8 +3,11 @@
 package main
 
 import (
-	displayService "golangtest/testservice"
+	"github.com/gin-gonic/gin"
+	// displayService "golangtest/testservice"
 )
+
+var Router *gin.Engine
 
 func main() {
 	// displayService.Variables()
@@ -16,5 +19,17 @@ func main() {
 	// displayService.Interfaces()
 	// displayService.Dictionaries()
 	// displayService.JSONS()
-	displayService.ConcurChan()
+	// displayService.ConcurChan()
+
+	// test gin rest api
+	Router = gin.Default()
+
+	api := Router.Group("/api")
+	{
+		api.GET("test", func(ctx *gin.Context) {
+			ctx.JSON(200, gin.H{"message": "Good"})
+		})
+	}
+
+	Router.Run(":5000")
 }

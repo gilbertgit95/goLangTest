@@ -308,3 +308,8 @@ func JSONS() {
 	fmt.Println(gilbert)
 	fmt.Println(gilbert2)
 }
+
+// goroutine and channels
+func ConcurChan() {
+
+}
