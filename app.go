@@ -9,6 +9,10 @@ import (
 
 var Router *gin.Engine
 
+func Plus(x int, y int) int {
+	return x + y
+}
+
 func main() {
 	// displayService.Variables()
 	// displayService.Conditions()
