@@ -1,5 +1,6 @@
 // You can edit this code!
 // Click here and start typing.
+//  start a godoc in the application
 package main
 
 import (
