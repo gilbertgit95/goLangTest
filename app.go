@@ -4,8 +4,9 @@
 package main
 
 import (
+	displayService "golangtest/testservice"
+
 	"github.com/gin-gonic/gin"
-	// displayService "golangtest/testservice"
 )
 
 var Router *gin.Engine
@@ -19,7 +20,8 @@ func Multiply(x int, y int) int {
 }
 
 func main() {
-	// displayService.Variables()
+	// libService.RunLib()
+	displayService.Variables()
 	// displayService.Conditions()
 	// displayService.Loops()
 	// displayService.SliceTypes()
