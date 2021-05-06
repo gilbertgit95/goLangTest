@@ -40,6 +40,10 @@ func main() {
 		api.GET("test", func(ctx *gin.Context) {
 			ctx.JSON(200, gin.H{"message": "Good"})
 		})
+
+		api.POST("test", func(ctx *gin.Context) {
+			ctx.JSON(200, gin.H{"message": "Good"})
+		})
 	}
 
 	Router.Run(":5000")
