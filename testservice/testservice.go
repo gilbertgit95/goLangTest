@@ -310,6 +310,22 @@ func JSONS() {
 }
 
 // goroutine and channels
-func ConcurChan() {
+func slowComputation(resolve chan int, num int) {
+	fmt.Println("-> slow process started")
+	time.Sleep(2 * time.Second)
+	fmt.Println("-> slow process ended")
+	resolve <- num * 5
+}
 
+func ConcurChan() {
+	// unbuffered channel
+	slowCompChan := make(chan int)
+
+	fmt.Println("# Concurrent process started")
+	go slowComputation(slowCompChan, 2)
+	go slowComputation(slowCompChan, 4)
+
+	sCompVal1, sCompVal2 := <-slowCompChan, <-slowCompChan
+
+	fmt.Println("# Concurrent process ended ", sCompVal1, " and ", sCompVal2)
 }
