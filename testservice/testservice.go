@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -331,19 +332,52 @@ func ConcurChan() {
 	// unbuffered channel uncertianty results when
 	// used with multiple go routines
 	// result are not sequencial
-	slowCompChan := make(chan int)
+	// slowCompChan := make(chan int)
 
-	fmt.Println("# Concurrent process started")
-	go slowComputation2(slowCompChan, 2)
-	go slowComputation(slowCompChan, 4)
-	go slowComputation(slowCompChan, 6)
+	// fmt.Println("# Concurrent process started")
+	// go slowComputation2(slowCompChan, 2)
+	// go slowComputation(slowCompChan, 4)
+	// go slowComputation(slowCompChan, 6)
 
-	sCompVal1 := <-slowCompChan
-	sCompVal2 := <-slowCompChan
-	sCompVal3 := <-slowCompChan
+	// sCompVal1 := <-slowCompChan
+	// sCompVal2 := <-slowCompChan
+	// sCompVal3 := <-slowCompChan
 
-	fmt.Println("# Concurrent process ended ", sCompVal1, " and ", sCompVal2, " and ", sCompVal3)
+	// fmt.Println("# Concurrent process ended ", sCompVal1, " and ", sCompVal2, " and ", sCompVal3)
 
-	// buffered channel
+	channel := make(chan string, 3)
 
+	var wg sync.WaitGroup
+	wg.Add(1)
+
+	go func() {
+		defer wg.Done()
+		time.Sleep(time.Second * 3)
+		channel <- `func1`
+	}()
+
+	wg.Wait()
+	fmt.Println("processing 1", <-channel)
+	wg.Add(1)
+
+	go func() {
+		defer wg.Done()
+		time.Sleep(time.Second * 2)
+		channel <- `func2`
+	}()
+
+	wg.Wait()
+	fmt.Println("processing 2", <-channel)
+	wg.Add(1)
+
+	go func() {
+		defer wg.Done()
+		time.Sleep(time.Second * 1)
+		channel <- `func3`
+	}()
+
+	wg.Wait()
+
+	fmt.Println("Done processing 3", <-channel)
+	// time.Sleep(time.Second * 7)
 }
