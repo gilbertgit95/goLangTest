@@ -311,21 +311,39 @@ func JSONS() {
 
 // goroutine and channels
 func slowComputation(resolve chan int, num int) {
-	fmt.Println("-> slow process started")
+	fmt.Println("-> slow process started ", num)
 	time.Sleep(2 * time.Second)
-	fmt.Println("-> slow process ended")
+	fmt.Println("-> slow process ended ", num)
 	resolve <- num * 5
+	fmt.Println("resolved ", num)
+}
+
+func slowComputation2(resolve chan int, num int) {
+	fmt.Println("-> slow process2 started ", num)
+	time.Sleep(3 * time.Second)
+	fmt.Println("-> slow process2 ended ", num)
+	resolve <- num * 2
+	fmt.Println("resolved 2", num)
 }
 
 func ConcurChan() {
 	// unbuffered channel
+	// unbuffered channel uncertianty results when
+	// used with multiple go routines
+	// result are not sequencial
 	slowCompChan := make(chan int)
 
 	fmt.Println("# Concurrent process started")
-	go slowComputation(slowCompChan, 2)
+	go slowComputation2(slowCompChan, 2)
 	go slowComputation(slowCompChan, 4)
+	go slowComputation(slowCompChan, 6)
 
-	sCompVal1, sCompVal2 := <-slowCompChan, <-slowCompChan
+	sCompVal1 := <-slowCompChan
+	sCompVal2 := <-slowCompChan
+	sCompVal3 := <-slowCompChan
 
-	fmt.Println("# Concurrent process ended ", sCompVal1, " and ", sCompVal2)
+	fmt.Println("# Concurrent process ended ", sCompVal1, " and ", sCompVal2, " and ", sCompVal3)
+
+	// buffered channel
+
 }
