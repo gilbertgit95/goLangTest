@@ -3,10 +3,15 @@ package controller
 import (
 	"fmt"
 
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
 func Init(Router *gin.Engine) {
+
+	// serve static files
+	Router.Use(static.Serve("/", static.LocalFile("./webapp/build", true)))
+
 	// api router group
 	api := Router.Group("/api")
 	{
