@@ -2,6 +2,7 @@ package controller
 
 import (
 	"fmt"
+	"io/ioutil"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -48,7 +49,17 @@ func UserInit(RouterGroup *gin.RouterGroup) {
 
 		// create users
 		userGroup.POST("", func(ctx *gin.Context) {
-			ctx.JSON(200, gin.H{"message": "Created Users"})
+			body := ctx.Request.Body
+			value, err := ioutil.ReadAll(body)
+
+			if err != nil {
+				ctx.JSON(500, gin.H{"message": "Error while processing the data."})
+			}
+
+			ctx.JSON(200, gin.H{
+				"message": "Created Users",
+				"data":    string(value),
+			})
 		})
 
 		// update users
