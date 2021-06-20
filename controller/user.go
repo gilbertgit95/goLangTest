@@ -8,12 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-const (
-	defaultPageSize = 100
-	defaultPageSkip = 0
-)
-
 func UserInit(RouterGroup *gin.RouterGroup) {
+	fmt.Println("[APP] Initialize User Controller")
+
 	userGroup := RouterGroup.Group("/user")
 	{
 		// fetch a user
@@ -33,8 +30,8 @@ func UserInit(RouterGroup *gin.RouterGroup) {
 			lname := ctx.Query("lname")
 			role := ctx.Query("role")
 
-			page := ctx.DefaultQuery("page", strconv.Itoa(defaultPageSkip))
-			size := ctx.DefaultQuery("size", strconv.Itoa(defaultPageSize))
+			page := ctx.DefaultQuery("page", strconv.Itoa(DefaultPageSkip))
+			size := ctx.DefaultQuery("size", strconv.Itoa(DefaultPageSize))
 
 			ctx.JSON(200, gin.H{
 				"message": "All users",
@@ -72,6 +69,4 @@ func UserInit(RouterGroup *gin.RouterGroup) {
 			ctx.JSON(200, gin.H{"message": "Deleted Users"})
 		})
 	}
-
-	fmt.Println("[APP] Initialize User Controller")
 }
