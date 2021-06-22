@@ -2,7 +2,7 @@ package controller
 
 import (
 	"fmt"
-	middleware "golangtest/middleware"
+	"golangtest/middleware"
 
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
@@ -30,8 +30,10 @@ func Init(Router *gin.Engine) {
 		// v1 router group under api
 		v1 := api.Group("/v1")
 		{
-			// initialize controllers
+			// init users controller
 			UserInit(v1)
+			// init temp controller
+			TempInit(v1)
 		}
 
 		// v2 router here in the future
