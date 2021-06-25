@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"golangtest/controller"
+	"golangtest/utility/encryption"
 	"golangtest/utility/env"
 
 	"github.com/gin-gonic/gin"
@@ -10,6 +12,10 @@ import (
 var Router *gin.Engine
 
 func main() {
+	// test encryption
+	test := encryption.GenerateJWT(encryption.UserJWT{})
+	fmt.Println(test)
+
 	// get environment variables
 	appSettings := env.GetENV()
 

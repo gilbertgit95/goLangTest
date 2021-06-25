@@ -19,6 +19,7 @@ type Env struct {
 	DbHost     string
 	DbDialect  string
 	JwtSecret  string
+	JwtExp     string
 }
 
 func GetENV() Env {
@@ -41,5 +42,6 @@ func GetENV() Env {
 		DbHost:     os.Getenv(AppName + "_" + appType + "_DB_HOST"),
 		DbDialect:  os.Getenv(AppName + "_" + appType + "_DB_DIALECT"),
 		JwtSecret:  os.Getenv(AppName + "_" + appType + "_JWT_SECRET"),
+		JwtExp:     os.Getenv(AppName + "_" + appType + "_JWT_EXP"),
 	}
 }
